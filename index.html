@@ -1,11 +1,182 @@
-<form method="POST" action="/checkout">
-  <h2>Books</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Friends of the Library Book Cart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function updateTotal() {
+            const prices = {
+                hardback: 2.00,
+                paperback: 1.00,
+                children: 0.50,
+                dvd: 1.00
+            };
 
-  Hardback Book (Libro de Tapa Dura) ($2): <input type="number" name="hardback" min="0" value="0"><br>
-  Paperback Book (Libro de Bolsiilo) ($1): <input type="number" name="paperback" min="0" value="0"><br>
-  Children's Book (Libro Infantil) ($0.50): <input type="number" name="children" min="0" value="0"><br>
-  DVD ($1): <input type="number" name="dvd" min="0" value="0"><br>
+            let total = 0;
 
-  <br>
-  <button type="submit">Checkout</button>
-</form>
+            for (const key in prices) {
+                const qty = parseFloat(document.getElementsByName(key)[0].value) || 0;
+                total += prices[key] * qty;
+            }
+
+            const tip = parseFloat(document.getElementsByName("tip")[0].value) || 0;
+            total += tip;
+
+            document.getElementById("totalCost").textContent = total.toFixed(2);
+        }
+
+        function attachListeners() {
+            const inputs = document.querySelectorAll('input[type="number"]');
+            inputs.forEach(input => input.addEventListener('input', updateTotal));
+        }
+
+        window.onload = attachListeners;
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 200px;
+            width: 50%;
+            height: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            max-width: 600px;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {background-color: #f9f9f9;}
+
+        tr.total-row {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        td.price {
+            text-align: right;
+        }
+
+        td.quantity {
+            text-align: center;
+        }
+
+        .tip-container, .checkout-button {
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        input[type="number"] {
+            width: 80px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 500px) {
+            input[type="number"] {
+                width: 60px;
+            }
+
+            .logo img {
+                width: 70%;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Logo at the top -->
+    <div class="logo">
+        <img src="https://images.squarespace-cdn.com/content/65ca235117c67c6a4c85578b/0ea921ac-48fb-4b61-894f-8c2becba97c4/bookmark+logo+-+green.png?format=1000w&content-type=image%2Fpng"
+             alt="Friends of the Library Logo">
+    </div>
+
+    <h1>Friends of the Library Book Cart</h1>
+
+    <form action="/checkout" method="POST">
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Hardback Book (Libro de Tapa Dura)</td>
+                    <td class="price">$2.00</td>
+                    <td class="quantity"><input type="number" name="hardback" min="0" value="0"></td>
+                </tr>
+                <tr>
+                    <td>Paperback Book (Libro de Bolsillo)</td>
+                    <td class="price">$1.00</td>
+                    <td class="quantity"><input type="number" name="paperback" min="0" value="0"></td>
+                </tr>
+                <tr>
+                    <td>Children's Book (Libro Infantil)</td>
+                    <td class="price">$0.50</td>
+                    <td class="quantity"><input type="number" name="children" min="0" value="0"></td>
+                </tr>
+                <tr>
+                    <td>DVD (Película en DVD)</td>
+                    <td class="price">$1.00</td>
+                    <td class="quantity"><input type="number" name="dvd" min="0" value="0"></td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="2" style="text-align: right;">Total</td>
+                    <td class="quantity">$<span id="totalCost">0.00</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="tip-container">
+            <label for="tip"><strong>Tip / Donation (optional): $</strong></label>
+            <input type="number" step="0.25" min="0" name="tip" value="0">
+        </div>
+
+        <div class="checkout-button">
+            <button type="submit">Checkout</button>
+        </div>
+    </form>
+
+</body>
+</html>
