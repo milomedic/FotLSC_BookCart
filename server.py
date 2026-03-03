@@ -12,9 +12,13 @@ stripe.api_key = key
 
 PRICE_IDS = {
     "hardback": "price_1SlZaDAn6MMwMYK28ZSrqwcW",
-    "paperback": "price_1SlZXzAn6MMwMYK2aW6XLCml",
+    "paperbackLarge": "price_1SlZXzAn6MMwMYK2aW6XLCml",
+    "paperbackSmall": "price_1T6tS9An6MMwMYK2yKJlwIsU",
     "children": "price_1SlZbiAn6MMwMYK2yEpuWXBV",
-    "dvd": "price_1SpGHkAn6MMwMYK2ejkZSICJ"
+    "dvd_cd": "price_1SpGHkAn6MMwMYK2ejkZSICJ",
+    "boardgame": "price_1T6tUeAn6MMwMYK2d7Jrf2eh",
+    "totebag": "price_1T6tVxAn6MMwMYK2f8JSHlB2"
+
 }
 
 # Route 1: Homepage

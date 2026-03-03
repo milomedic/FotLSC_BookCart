@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Friends of the Library Book Cart</title>
+    <title>Friends of the Library - South Central Book Cart</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         function updateTotal() {
             const prices = {
                 hardback: 2.00,
-                paperback: 1.00,
+                paperbackLarge: 1.00,
+                paperbackSmall: 0.50,
                 children: 0.50,
-                dvd: 1.00
+                dvd_cd: 1.00,
+                boardgame: 5.00,
+                totebag: 5.00,
             };
 
             let total = 0;
@@ -129,7 +132,7 @@
              alt="Friends of the Library Logo">
     </div>
 
-    <h1>Friends of the Library Book Cart</h1>
+    <h1>Friends of the Library South Central Book Cart</h1>
 
     <form action="/checkout" method="POST">
         <table>
@@ -147,9 +150,14 @@
                     <td class="quantity"><input type="number" name="hardback" min="0" value="0"></td>
                 </tr>
                 <tr>
-                    <td>Paperback Book (Libro de Bolsillo)</td>
+                    <td>Large Paperback Book (Libro de Bolsillo Grande)</td>
                     <td class="price">$1.00</td>
-                    <td class="quantity"><input type="number" name="paperback" min="0" value="0"></td>
+                    <td class="quantity"><input type="number" name="paperbackLarge" min="0" value="0"></td>
+                </tr>
+                <tr>
+                    <td>Small Paperback Book (Libro de Bolsillo Pequeño)</td>
+                    <td class="price">$0.50</td>
+                    <td class="quantity"><input type="number" name="paperbackSmall" min="0" value="0"></td>
                 </tr>
                 <tr>
                     <td>Children's Book (Libro Infantil)</td>
@@ -157,9 +165,19 @@
                     <td class="quantity"><input type="number" name="children" min="0" value="0"></td>
                 </tr>
                 <tr>
-                    <td>DVD (Película en DVD)</td>
+                    <td>DVD/CD</td>
                     <td class="price">$1.00</td>
-                    <td class="quantity"><input type="number" name="dvd" min="0" value="0"></td>
+                    <td class="quantity"><input type="number" name="dvd_cd" min="0" value="0"></td>
+                </tr>
+                <tr>
+                    <td>Board Game (Juego de Mesa)</td>
+                    <td class="price">$5.00</td>
+                    <td class="quantity"><input type="number" name="boardgame" min="0" value="0"></td>
+                </tr>
+                <tr>
+                    <td>Tote Bag (Bolsa de Tela)</td>
+                    <td class="price">$5.00</td>
+                    <td class="quantity"><input type="number" name="totebag" min="0" value="0"></td>
                 </tr>
                 <tr class="total-row">
                     <td colspan="2" style="text-align: right;">Total</td>
