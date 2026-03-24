@@ -77,3 +77,26 @@ def checkout():
 
     except Exception as e:
         return f"<h1>Stripe error</h1><pre>{str(e)}</pre>"
+
+# Route 3: success
+@app.route("/success")
+def success():
+    return """
+    <html>
+        <head>
+            <title>Payment Successful</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <body style="font-family: Arial; text-align: center; margin: 30px;">
+            <div>
+                <img src="https://images.squarespace-cdn.com/content/65ca235117c67c6a4c85578b/0ea921ac-48fb-4b61-894f-8c2becba97c4/bookmark+logo+-+green.png?format=1000w&content-type=image%2Fpng"
+                     style="max-width: 150px;">
+            </div>
+            <h1>Thank you!</h1>
+            <p>Your payment was successful.</p>
+            <p>We appreciate your support of the library.</p>
+            <br>
+            <a href="/" style="font-size: 18px;">← Return to Book Cart</a>
+        </body>
+    </html>
+    """
